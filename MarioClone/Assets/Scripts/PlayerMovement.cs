@@ -37,9 +37,9 @@ public class PlayerMovement : MonoBehaviour
         lookAction = playerInput.actions["Look"];
         jumpAction = playerInput.actions["Jump"];
 
-        playerSpeed = 10f;
-        gravityValue = -9.81f * 4f;
-        jumpHeight = 2.5f;
+        playerSpeed = 8f;
+        gravityValue = -9.81f * 3f;
+        jumpHeight = 3.5f;
         jumpTime = 1f;
         turnSmoothTime = 0.1f;
     }
@@ -64,6 +64,10 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movementX = Camera.main.transform.right * input.x;
         Vector3 movementZ = Camera.main.transform.forward * input.y;
         Vector3 move = movementX + movementZ;
+        // Vector3 move = new Vector3(input.x, 0, input.y).normalized;
+
+        // Vector3 move = new Vector3(input.x, 0, input.y);
+        controller.Move(move * Time.deltaTime * playerSpeed);
 
         controller.Move(move * Time.deltaTime * playerSpeed);
 
@@ -109,6 +113,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        //
+        // detect if enter lava
     }
 }
